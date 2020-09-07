@@ -1,6 +1,6 @@
 # This is just for testing
 from LU import badSmell
-from LU.badSmell import orderItem
+from LU.badSmell import OrderItem
 
 class Testing:
 
@@ -17,7 +17,7 @@ class Testing:
         self.__test_handle_post_request()
 
     def __test_create_order(self):
-        order_item = orderItem('Test Item')
+        order_item = OrderItem('Test Item')
         order_item.price = 1
         order = badSmell.create_new_order_and_print('Test Order', [order_item], 'ABC', 1.16)
         self.assert_equal(order['name'], 'Test Order')

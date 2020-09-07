@@ -46,7 +46,7 @@ class DBConn:
 
 
 
-class orderItem:
+class OrderItem:
     id: str
     name: str
     price: float
@@ -75,7 +75,7 @@ def createSpecialOrder(special, name, items, tax):
 
     return order
 
-def create_new_order_and_print(name, items: List[orderItem], buyerId, tax):
+def create_new_order_and_print(name, items: List[OrderItem], buyerId, tax):
 
     # loop over all order items and add a tax
     [addTaxToOrderItem(i, tax) for i in items]
@@ -124,7 +124,7 @@ def calc_total_order_price(order) -> float:
     return total
 
 
-def addTaxToOrderItem(item: orderItem, tax) -> orderItem:
+def addTaxToOrderItem(item: OrderItem, tax) -> OrderItem:
     item.priceWithTax = item.price * tax
     return item
 
@@ -150,7 +150,7 @@ def handlePostRequest(body):
     i = 0
     for item in body['items']:
         i += 1
-        item1 = orderItem(item['name'])
+        item1 = OrderItem(item['name'])
         item1.price = item['price']
         item1.id = 1
         items.append(item1)
