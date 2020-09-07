@@ -14,6 +14,7 @@ class Testing:
 
     def __run_tests(self):
         self.__test_create_order()
+        self.__test_handle_post_request()
 
     def __test_create_order(self):
         order_item = orderItem('Test Item')
@@ -26,6 +27,25 @@ class Testing:
         self.assert_equal(order['items'][0].priceWithTax, 1.16)
 
 
+    def __test_handle_post_request(self):
+        order = badSmell.handlePostRequest({
+            'name': 'My Order',
+            'items': [
+                {
+                    'name': 'Milk',
+                    'price': 1.15,
+                },
+                {
+                    'name': 'super_special_vat_free_item',
+                    'price': 1.50,
+                }
+            ],
+            'buyerId': 'abc123'
+        })
+        self.assert_equal(order['name'], 'My Order')
+        self.assert_equal(len(order['items']), 2)
+        self.assert_equal(order['items'][0].name, 'Milk')
+        self.assert_equal(order['buyerId'], 'abc123')
 
 
 Testing()
