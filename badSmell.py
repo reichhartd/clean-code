@@ -129,24 +129,6 @@ def addTaxToOrderItem(item: orderItem, tax) -> orderItem:
     return item
 
 
-
-def super_wichtigerCode(rand, param, squared):
-    p = (rand * param) % 2
-    al = []
-    k = 25
-    for al in range(5):
-
-        if p == k:
-            al.push(p * squared - 25)
-        else:
-            al.push(p * squared)
-
-
-    return al
-
-
-
-
 def is_item_vat_free(item):
     if item.name == 'post_stamps':
         return True
@@ -165,7 +147,6 @@ def handlePostRequest(body):
 
     items = []
 
-
     i = 0
     for item in body['items']:
         i += 1
@@ -182,37 +163,3 @@ def handlePostRequest(body):
             print('There was a problem with the DB', desc)
         if type == ExceptionTypes.LOGIC:
             print('There was a logic error', desc)
-
-
-#### RUN ####
-
-handlePostRequest({
-    'name': 'My Order',
-    'items': [
-        {
-            'name': 'Milk',
-            'price': 1.15, # <-- xss
-        },
-        {
-            'name': 'super_special_vat_free_item',
-            'price': 1.50,
-        }
-    ],
-    'buyerId': 'abc123'
-})
-
-# Second request should raise an Duplicated Key error
-handlePostRequest({
-    'name': 'My Order',
-    'items': [
-        {
-            'name': 'Milk',
-            'price': 1.15, # <-- xss
-        },
-        {
-            'name': 'super_special_vat_free_item',
-            'price': 1.50,
-        }
-    ],
-    'buyerId': 'abc123'
-})
