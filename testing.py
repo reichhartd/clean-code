@@ -15,6 +15,7 @@ class Testing:
     def __run_tests(self):
         self.__test_create_order()
         self.__test_handle_post_request()
+        self.__test_order_item()
 
     def __test_create_order(self):
         order_item = OrderItem('Test Item', 1, 1)
@@ -45,6 +46,16 @@ class Testing:
         self.assert_equal(len(order['items']), 2)
         self.assert_equal(order['items'][0].name, 'Milk')
         self.assert_equal(order['buyerId'], 'abc123')
+
+
+    def __test_order_item(self):
+        orderItem = OrderItem('Test Item', 100, 1)
+        self.assert_equal(orderItem.name, 'Test Item')
+        self.assert_equal(orderItem.price, 100)
+        self.assert_equal(orderItem.id, 1)
+
+
+    
 
 
 Testing()
