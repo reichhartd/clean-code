@@ -17,8 +17,7 @@ class Testing:
         self.__test_handle_post_request()
 
     def __test_create_order(self):
-        order_item = OrderItem('Test Item')
-        order_item.price = 1
+        order_item = OrderItem('Test Item', 1, 1)
         order = badSmell.create_new_order_and_print('Test Order', [order_item], 'ABC', 1.16)
         self.assert_equal(order['name'], 'Test Order')
         self.assert_equal(len(order['items']), 1)

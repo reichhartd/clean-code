@@ -47,13 +47,15 @@ class DBConn:
 
 
 class OrderItem:
-    id: str
+    id: int
     name: str
     price: float
     priceWithTax: float
 
-    def __init__(self, name):
+    def __init__(self, name: str, price: float, id: int):
         self.name = name
+        self.price = price
+        self.id = id
 
 
 
@@ -150,9 +152,7 @@ def handlePostRequest(body):
     i = 0
     for item in body['items']:
         i += 1
-        item1 = OrderItem(item['name'])
-        item1.price = item['price']
-        item1.id = 1
+        item1 = OrderItem(item['name'], float(item['price']), i)
         items.append(item1)
 
     try:
