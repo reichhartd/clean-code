@@ -175,7 +175,7 @@ def handlePostRequest(body):
         items.append(item1)
 
     try:
-        create_new_order_and_print(orderName, items, buyerId, tax)
+        return create_new_order_and_print(orderName, items, buyerId, tax)
     except Exception as inst:
         type, desc = inst.args
         if type == ExceptionTypes.DATABASE:
