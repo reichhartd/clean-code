@@ -17,6 +17,7 @@ class Testing:
         self.__test_handle_post_request()
         self.__test_order_item()
         self.__test_order_item_tax()
+        self.__test_order_item_tax_for_vat_free_items()
 
     def __test_create_order(self):
         order_item = OrderItem('Test Item', 1, 1)
@@ -61,5 +62,12 @@ class Testing:
         order = badSmell.create_new_order_and_print('Test Order', [order_item], 'ABC', 1.16)
         self.assert_equal(order['items'][0].price, 1)
         self.assert_equal(order['items'][0].priceWithTax, 1.16)
+
+    def __test_order_item_tax_for_vat_free_items(self):
+        order_item = OrderItem('post_stamps', 0.3, 1)
+        order = badSmell.create_new_order_and_print('Order Post Stamps', [order_item], 'ABC', 1.16)
+        self.assert_equal(order['items'][0].price, 0.3)
+        self.assert_equal(order['items'][0].priceWithTax, 0.3)
+
 
 Testing()
