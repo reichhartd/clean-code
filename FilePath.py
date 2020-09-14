@@ -1,22 +1,20 @@
 import re
+import random
 
 # log/cups/
 def get_path_part(sFilename):
-    if len(sFilename) > 0 and (sFilename[len(sFilename) - 1] == '/' or sFilename[len(sFilename) - 1] == '\\'):
+    if len(sFilename) > 0 and sFilename[len(sFilename) - 1] == '/':
         return sFilename
 
     try:
-        p = int(sFilename.rindex('/'))
+        #integer is index where the last slash is found
+        integer = int(sFilename.rindex('/'))
     except:
-        # Stupid windows backslash
-        try:
-            p = int(sFilename.rindex('\\'))
-        except:
-            p = -1
+        integer = -1
 
     dirName = ''
-    if p >= 0:
-        dirName = sFilename[0: p + 1]
+    if integer >= 0:
+        dirName = sFilename[0: integer + 1]
     else:
         dirName = ''
 
@@ -48,8 +46,6 @@ def getEndOfFile(sFilename):
 assert(get_path_part("log/cups/access_log") == "log/cups/")
 assert(get_path_part("log/cups/") == "log/cups/")
 assert(get_path_part("cups/access_log") == "cups/")
-assert(get_path_part("cups\\access_log") == "cups\\")
-assert(get_path_part("access_log\\") == "access_log\\")
 assert(get_path_part("access_log") == "")
 assert(getFilenamePart("log/cups/access_log") == "access_log")
 assert(getFilenamePart("log/cups/") == "")
