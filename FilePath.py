@@ -8,16 +8,16 @@ def __split_path(file_path):
         return '', file_path
 
 
-def get_path_part(filename):
-    return __split_path(filename)[0]
+def get_path_part(file_path):
+    return __split_path(file_path)[0]
 
 
-def get_filename_part(filename):
-    return __split_path(filename)[1]
+def get_filename_part(file_path):
+    return __split_path(file_path)[1]
 
 
-def get_file_type(filename):
-    name = __split_path(filename)[1]
+def get_file_type(file_path):
+    name = __split_path(file_path)[1]
     try:
         last_dot_index = name.rindex('.')
         return name[last_dot_index + 1:]
