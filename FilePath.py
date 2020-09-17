@@ -10,9 +10,9 @@ class FilePath:
         except:
             return '', file_path
 
+    def get_path_part(self, file_path):
+        return self.split_path(file_path)[0]
 
-def get_path_part(file_path):
-    return FilePath.split_path(file_path)[0]
 
 
 def get_filename_part(file_path):
@@ -30,10 +30,10 @@ def get_file_type(file_path):
 
 assert(FilePath.split_path("log/cups/access_log")[0] == "log/cups/")
 assert(FilePath.split_path("log/cups/access_log")[1] == "access_log")
-assert(get_path_part("log/cups/access_log") == "log/cups/")
-assert(get_path_part("log/cups/") == "log/cups/")
-assert(get_path_part("cups/access_log") == "cups/")
-assert(get_path_part("access_log") == "")
+assert(FilePath().get_path_part("log/cups/access_log") == "log/cups/")
+assert(FilePath().get_path_part("log/cups/") == "log/cups/")
+assert(FilePath().get_path_part("cups/access_log") == "cups/")
+assert(FilePath().get_path_part("access_log") == "")
 assert(get_filename_part("log/cups/access_log") == "access_log")
 assert(get_filename_part("log/cups/") == "")
 assert(get_filename_part("cups/access_log") == "access_log")
