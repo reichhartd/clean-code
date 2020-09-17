@@ -17,11 +17,10 @@ class FilePath:
     def get_filename_part(self):
         return self.file_name
 
-    def get_extension(self, file_path):
-        name = self.split_path(file_path)[1]
+    def get_extension(self):
         try:
-            last_dot_index = name.rindex('.')
-            return name[last_dot_index + 1:]
+            last_dot_index = self.file_name.rindex('.')
+            return self.file_name[last_dot_index + 1:]
         except:
             return ''
 
@@ -36,7 +35,7 @@ assert(FilePath("log/cups/access_log").get_filename_part() == "access_log")
 assert(FilePath("log/cups/").get_filename_part() == "")
 assert(FilePath("cups/access_log").get_filename_part() == "access_log")
 assert(FilePath("access_log").get_filename_part() == "access_log")
-assert(FilePath().get_extension("log/cups/access_log") == "")
-assert(FilePath().get_extension("base/FileHelper.cpp") == "cpp")
-assert(FilePath().get_extension("base/FileHelper.cpp.bak") == "bak")
-assert(FilePath().get_extension("src/base.tmp/") == "")
+assert(FilePath("log/cups/access_log").get_extension() == "")
+assert(FilePath("base/FileHelper.cpp").get_extension() == "cpp")
+assert(FilePath("base/FileHelper.cpp.bak").get_extension() == "bak")
+assert(FilePath("src/base.tmp/").get_extension() == "")
