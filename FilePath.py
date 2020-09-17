@@ -1,39 +1,44 @@
-class File:
-    __file_path_part: str
-    __file_name: str
+class FilePath:
 
-    def __init__(self, file_path):
+    @staticmethod
+    def split_path(file_path):
         try:
             last_slash_index = file_path.rindex('/') + 1
-            self.__file_path_part = file_path[:last_slash_index]
-            self.__file_name = file_path[last_slash_index:]
+            file_path_part = file_path[:last_slash_index]
+            filename = file_path[last_slash_index:]
+            return file_path_part, filename
         except:
-            self.__file_path_part = ''
-            self.__file_name = file_path
-
-    def get_path_part(self) -> str:
-        return self.__file_path_part
-
-    def get_filename(self) -> str:
-        return self.__file_name
-
-    def get_type(self) -> str:
-        try:
-            last_dot_index = self.__file_name.rindex('.')
-            return self.__file_name[last_dot_index + 1:]
-        except:
-            return ''
+            return '', file_path
 
 
-assert(File("log/cups/access_log").get_path_part() == "log/cups/")
-assert(File("log/cups/").get_path_part() == "log/cups/")
-assert(File("cups/access_log").get_path_part() == "cups/")
-assert(File("access_log").get_path_part() == "")
-assert(File("log/cups/access_log").get_filename() == "access_log")
-assert(File("log/cups/").get_filename() == "")
-assert(File("cups/access_log").get_filename() == "access_log")
-assert(File("access_log").get_filename() == "access_log")
-assert(File("log/cups/access_log").get_type() == "")
-assert(File("base/FileHelper.cpp").get_type() == "cpp")
-assert(File("base/FileHelper.cpp.bak").get_type() == "bak")
-assert(File("src/base.tmp/").get_type() == "")
+def get_path_part(file_path):
+    return FilePath.split_path(file_path)[0]
+
+
+def get_filename_part(file_path):
+    return FilePath.split_path(file_path)[1]
+
+
+def get_file_type(file_path):
+    name = FilePath.split_path(file_path)[1]
+    try:
+        last_dot_index = name.rindex('.')
+        return name[last_dot_index + 1:]
+    except:
+        return ''
+
+
+assert(FilePath.split_path("log/cups/access_log")[0] == "log/cups/")
+assert(FilePath.split_path("log/cups/access_log")[1] == "access_log")
+assert(get_path_part("log/cups/access_log") == "log/cups/")
+assert(get_path_part("log/cups/") == "log/cups/")
+assert(get_path_part("cups/access_log") == "cups/")
+assert(get_path_part("access_log") == "")
+assert(get_filename_part("log/cups/access_log") == "access_log")
+assert(get_filename_part("log/cups/") == "")
+assert(get_filename_part("cups/access_log") == "access_log")
+assert(get_filename_part("access_log") == "access_log")
+assert(get_file_type("log/cups/access_log") == "")
+assert(get_file_type("base/FileHelper.cpp") == "cpp")
+assert(get_file_type("base/FileHelper.cpp.bak") == "bak")
+assert(get_file_type("src/base.tmp/") == "")
