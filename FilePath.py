@@ -18,12 +18,11 @@ def get_filename_part(filename):
 
 def get_file_type(filename):
     try:
-        occurrences = [m.start() for m in re.finditer('\.', filename)]
-        return filename[occurrences[-1] + 1:]
+        last_dot_index = int(filename.rindex('.'))
+        return filename[last_dot_index + 1:]
     except:
-        pass
+        return ''
 
-    return ''
 
 
 assert(get_path_part("log/cups/access_log") == "log/cups/")
