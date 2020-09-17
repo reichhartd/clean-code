@@ -1,23 +1,26 @@
-def __split_path(file_path):
-    try:
-        last_slash_index = file_path.rindex('/') + 1
-        file_path_part = file_path[:last_slash_index]
-        filename = file_path[last_slash_index:]
-        return file_path_part, filename
-    except:
-        return '', file_path
+class FilePath:
+
+    @staticmethod
+    def split_path(file_path):
+        try:
+            last_slash_index = file_path.rindex('/') + 1
+            file_path_part = file_path[:last_slash_index]
+            filename = file_path[last_slash_index:]
+            return file_path_part, filename
+        except:
+            return '', file_path
 
 
 def get_path_part(file_path):
-    return __split_path(file_path)[0]
+    return FilePath.split_path(file_path)[0]
 
 
 def get_filename_part(file_path):
-    return __split_path(file_path)[1]
+    return FilePath.split_path(file_path)[1]
 
 
 def get_file_type(file_path):
-    name = __split_path(file_path)[1]
+    name = FilePath.split_path(file_path)[1]
     try:
         last_dot_index = name.rindex('.')
         return name[last_dot_index + 1:]
@@ -25,8 +28,8 @@ def get_file_type(file_path):
         return ''
 
 
-assert(__split_path("log/cups/access_log")[0] == "log/cups/")
-assert(__split_path("log/cups/access_log")[1] == "access_log")
+assert(FilePath.split_path("log/cups/access_log")[0] == "log/cups/")
+assert(FilePath.split_path("log/cups/access_log")[1] == "access_log")
 assert(get_path_part("log/cups/access_log") == "log/cups/")
 assert(get_path_part("log/cups/") == "log/cups/")
 assert(get_path_part("cups/access_log") == "cups/")
