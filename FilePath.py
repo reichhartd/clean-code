@@ -2,7 +2,7 @@ class FilePath:
     __file_path_part: str
     __file_name: str
 
-    def __init__(self, file_path):
+    def __init__(self, file_path: str):
         try:
             last_slash_index = file_path.rindex('/') + 1
             self.__file_path_part = file_path[:last_slash_index]
@@ -11,13 +11,13 @@ class FilePath:
             self.__file_path_part = ''
             self.__file_name = file_path
 
-    def get_path_part(self):
+    def get_path_part(self) -> str:
         return self.__file_path_part
 
-    def get_filename_part(self):
+    def get_filename_part(self) -> str:
         return self.__file_name
 
-    def get_extension(self):
+    def get_extension(self) -> str:
         try:
             last_dot_index = self.__file_name.rindex('.')
             return self.__file_name[last_dot_index + 1:]
