@@ -1,17 +1,17 @@
 import re
 
-def get_path_part(sFilename):
-    if len(sFilename) > 0 and sFilename[len(sFilename) - 1] == '/':
-        return sFilename
+def get_path_part(filename):
+    if len(filename) > 0 and filename[len(filename) - 1] == '/':
+        return filename
 
     try:
-        last_slash_index = int(sFilename.rindex('/'))
+        last_slash_index = int(filename.rindex('/'))
     except:
         last_slash_index = -1
 
     dirName = ''
     if last_slash_index >= 0:
-        dirName = sFilename[0: last_slash_index + 1]
+        dirName = filename[0: last_slash_index + 1]
     else:
         dirName = ''
 
