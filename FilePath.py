@@ -5,14 +5,13 @@ def get_path_part(sFilename):
         return sFilename
 
     try:
-        #integer is index where the last slash is found
-        integer = int(sFilename.rindex('/'))
+        last_slash_index = int(sFilename.rindex('/'))
     except:
-        integer = -1
+        last_slash_index = -1
 
     dirName = ''
-    if integer >= 0:
-        dirName = sFilename[0: integer + 1]
+    if last_slash_index >= 0:
+        dirName = sFilename[0: last_slash_index + 1]
     else:
         dirName = ''
 
