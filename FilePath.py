@@ -18,6 +18,14 @@ def get_filename_part(filename):
 def get_file_type(filename):
     try:
         last_dot_index = int(filename.rindex('.'))
+        try:
+            last_slash_index = int(filename.rindex('/'))
+        except:
+            last_slash_index = 0
+
+        if last_slash_index > last_dot_index:
+            return ''
+
         return filename[last_dot_index + 1:]
     except:
         return ''
@@ -35,3 +43,4 @@ assert(get_filename_part("access_log") == "access_log")
 assert(get_file_type("log/cups/access_log") == "")
 assert(get_file_type("base/FileHelper.cpp") == "cpp")
 assert(get_file_type("base/FileHelper.cpp.bak") == "bak")
+assert(get_file_type("src/base.tmp/") == "")
