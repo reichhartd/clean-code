@@ -8,22 +8,22 @@ def get_path_part(filename):
         return ''
 
 
-def get_filename_part(sFilename):
+def get_filename_part(filename):
     try:
-        int(sFilename.rindex('/'))
+        int(filename.rindex('/'))
     except:
-        return sFilename
+        return filename
 
-    pos = sFilename.rindex('/')
-    base_name = sFilename[pos + 1:]
+    pos = filename.rindex('/')
+    base_name = filename[pos + 1:]
     return base_name
 
 
 
-def get_file_type(sFilename):
+def get_file_type(filename):
     try:
-        occurrences = [m.start() for m in re.finditer('\.', sFilename)]
-        return sFilename[occurrences[-1] + 1:]
+        occurrences = [m.start() for m in re.finditer('\.', filename)]
+        return filename[occurrences[-1] + 1:]
     except:
         pass
 
