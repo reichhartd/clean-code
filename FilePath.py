@@ -10,14 +10,10 @@ def get_path_part(filename):
 
 def get_filename_part(filename):
     try:
-        int(filename.rindex('/'))
+        last_slash_index = int(filename.rindex('/'))
+        return filename[last_slash_index + 1:]
     except:
         return filename
-
-    pos = filename.rindex('/')
-    base_name = filename[pos + 1:]
-    return base_name
-
 
 
 def get_file_type(filename):
