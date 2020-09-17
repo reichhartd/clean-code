@@ -32,7 +32,7 @@ def get_filename_part(sFilename):
 
 
 #.png
-def getEndOfFile(sFilename):
+def get_file_type(sFilename):
     try:
         occurrences = [m.start() for m in re.finditer('\.', sFilename)]
         return sFilename[occurrences[-1] + 1:]
@@ -50,6 +50,6 @@ assert(get_filename_part("log/cups/access_log") == "access_log")
 assert(get_filename_part("log/cups/") == "")
 assert(get_filename_part("cups/access_log") == "access_log")
 assert(get_filename_part("access_log") == "access_log")
-assert(getEndOfFile("log/cups/access_log") == "")
-assert(getEndOfFile("base/FileHelper.cpp") == "cpp")
-assert(getEndOfFile("base/FileHelper.cpp.bak") == "bak")
+assert(get_file_type("log/cups/access_log") == "")
+assert(get_file_type("base/FileHelper.cpp") == "cpp")
+assert(get_file_type("base/FileHelper.cpp.bak") == "bak")
