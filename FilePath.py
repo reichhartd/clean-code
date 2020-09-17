@@ -13,11 +13,7 @@ def get_path_part(filename):
 
 
 def get_filename_part(filename):
-    try:
-        last_slash_index = int(filename.rindex('/'))
-        return filename[last_slash_index + 1:]
-    except:
-        return filename
+    return __split_path(filename)[1]
 
 
 def get_file_type(filename):
