@@ -1,14 +1,15 @@
 class FilePath:
+    file_path_part: str
+    file_name: str
 
-    @staticmethod
-    def split_path(file_path):
+    def __init__(self, file_path):
         try:
             last_slash_index = file_path.rindex('/') + 1
-            file_path_part = file_path[:last_slash_index]
-            filename = file_path[last_slash_index:]
-            return file_path_part, filename
+            self.file_path_part = file_path[:last_slash_index]
+            self.file_name = file_path[last_slash_index:]
         except:
-            return '', file_path
+            self.file_path_part = ''
+            self.file_name = file_path
 
     def get_path_part(self, file_path):
         return self.split_path(file_path)[0]
@@ -16,20 +17,17 @@ class FilePath:
     def get_filename_part(self, file_path):
         return self.split_path(file_path)[1]
 
+    def get_extension(self, file_path):
+        name = self.split_path(file_path)[1]
+        try:
+            last_dot_index = name.rindex('.')
+            return name[last_dot_index + 1:]
+        except:
+            return ''
 
 
-
-def get_file_type(file_path):
-    name = FilePath.split_path(file_path)[1]
-    try:
-        last_dot_index = name.rindex('.')
-        return name[last_dot_index + 1:]
-    except:
-        return ''
-
-
-assert(FilePath.split_path("log/cups/access_log")[0] == "log/cups/")
-assert(FilePath.split_path("log/cups/access_log")[1] == "access_log")
+assert(FilePath("log/cups/access_log").file_path_part == "log/cups/")
+assert(FilePath("log/cups/access_log").file_name == "access_log")
 assert(FilePath().get_path_part("log/cups/access_log") == "log/cups/")
 assert(FilePath().get_path_part("log/cups/") == "log/cups/")
 assert(FilePath().get_path_part("cups/access_log") == "cups/")
@@ -38,7 +36,7 @@ assert(FilePath().get_filename_part("log/cups/access_log") == "access_log")
 assert(FilePath().get_filename_part("log/cups/") == "")
 assert(FilePath().get_filename_part("cups/access_log") == "access_log")
 assert(FilePath().get_filename_part("access_log") == "access_log")
-assert(get_file_type("log/cups/access_log") == "")
-assert(get_file_type("base/FileHelper.cpp") == "cpp")
-assert(get_file_type("base/FileHelper.cpp.bak") == "bak")
-assert(get_file_type("src/base.tmp/") == "")
+assert(FilePath().get_extension("log/cups/access_log") == "")
+assert(FilePath().get_extension("base/FileHelper.cpp") == "cpp")
+assert(FilePath().get_extension("base/FileHelper.cpp.bak") == "bak")
+assert(FilePath().get_extension("src/base.tmp/") == "")
