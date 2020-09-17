@@ -11,13 +11,13 @@ class File:
             self.__file_path_part = ''
             self.__file_name = file_path
 
-    def get_path_part(self):
+    def get_path_part(self) -> str:
         return self.__file_path_part
 
-    def get_filename_part(self):
+    def get_filename_part(self) -> str:
         return self.__file_name
 
-    def get_file_type(self):
+    def get_file_type(self) -> str:
         try:
             last_dot_index = self.__file_name.rindex('.')
             return self.__file_name[last_dot_index + 1:]
