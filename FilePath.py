@@ -11,8 +11,8 @@ class FilePath:
             self.file_path_part = ''
             self.file_name = file_path
 
-    def get_path_part(self, file_path):
-        return self.split_path(file_path)[0]
+    def get_path_part(self):
+        return self.file_path_part
 
     def get_filename_part(self, file_path):
         return self.split_path(file_path)[1]
@@ -28,10 +28,10 @@ class FilePath:
 
 assert(FilePath("log/cups/access_log").file_path_part == "log/cups/")
 assert(FilePath("log/cups/access_log").file_name == "access_log")
-assert(FilePath().get_path_part("log/cups/access_log") == "log/cups/")
-assert(FilePath().get_path_part("log/cups/") == "log/cups/")
-assert(FilePath().get_path_part("cups/access_log") == "cups/")
-assert(FilePath().get_path_part("access_log") == "")
+assert(FilePath("log/cups/access_log").get_path_part() == "log/cups/")
+assert(FilePath("log/cups/").get_path_part() == "log/cups/")
+assert(FilePath("cups/access_log").get_path_part() == "cups/")
+assert(FilePath("access_log").get_path_part() == "")
 assert(FilePath().get_filename_part("log/cups/access_log") == "access_log")
 assert(FilePath().get_filename_part("log/cups/") == "")
 assert(FilePath().get_filename_part("cups/access_log") == "access_log")
