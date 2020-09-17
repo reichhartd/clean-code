@@ -1,14 +1,15 @@
 class File:
+    file_path_part: str
+    file_name: str
 
-    @staticmethod
-    def split_path(file_path):
+    def __init__(self, file_path):
         try:
             last_slash_index = file_path.rindex('/') + 1
-            file_path_part = file_path[:last_slash_index]
-            filename = file_path[last_slash_index:]
-            return file_path_part, filename
+            self.file_path_part = file_path[:last_slash_index]
+            self.file_name = file_path[last_slash_index:]
         except:
-            return '', file_path
+            self.file_path_part = ''
+            self.file_name = file_path
 
     def get_path_part(self, file_path):
         return self.split_path(file_path)[0]
@@ -25,8 +26,8 @@ class File:
             return ''
 
 
-assert(File.split_path("log/cups/access_log")[0] == "log/cups/")
-assert(File.split_path("log/cups/access_log")[1] == "access_log")
+assert(File("log/cups/access_log").file_path_part == "log/cups/")
+assert(File("log/cups/access_log").file_name == "access_log")
 assert(File().get_path_part("log/cups/access_log") == "log/cups/")
 assert(File().get_path_part("log/cups/") == "log/cups/")
 assert(File().get_path_part("cups/access_log") == "cups/")
