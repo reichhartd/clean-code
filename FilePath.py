@@ -14,8 +14,8 @@ class FilePath:
     def get_path_part(self):
         return self.file_path_part
 
-    def get_filename_part(self, file_path):
-        return self.split_path(file_path)[1]
+    def get_filename_part(self):
+        return self.file_name
 
     def get_extension(self, file_path):
         name = self.split_path(file_path)[1]
@@ -32,10 +32,10 @@ assert(FilePath("log/cups/access_log").get_path_part() == "log/cups/")
 assert(FilePath("log/cups/").get_path_part() == "log/cups/")
 assert(FilePath("cups/access_log").get_path_part() == "cups/")
 assert(FilePath("access_log").get_path_part() == "")
-assert(FilePath().get_filename_part("log/cups/access_log") == "access_log")
-assert(FilePath().get_filename_part("log/cups/") == "")
-assert(FilePath().get_filename_part("cups/access_log") == "access_log")
-assert(FilePath().get_filename_part("access_log") == "access_log")
+assert(FilePath("log/cups/access_log").get_filename_part() == "access_log")
+assert(FilePath("log/cups/").get_filename_part() == "")
+assert(FilePath("cups/access_log").get_filename_part() == "access_log")
+assert(FilePath("access_log").get_filename_part() == "access_log")
 assert(FilePath().get_extension("log/cups/access_log") == "")
 assert(FilePath().get_extension("base/FileHelper.cpp") == "cpp")
 assert(FilePath().get_extension("base/FileHelper.cpp.bak") == "bak")
