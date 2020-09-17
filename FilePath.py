@@ -17,24 +17,16 @@ def get_filename_part(filename):
 
 
 def get_file_type(filename):
+    name = __split_path(filename)[1]
     try:
-        last_dot_index = int(filename.rindex('.'))
-        try:
-            last_slash_index = int(filename.rindex('/'))
-        except:
-            last_slash_index = 0
-
-        if last_slash_index > last_dot_index:
-            return ''
-
-        return filename[last_dot_index + 1:]
+        last_dot_index = name.rindex('.')
+        return name[last_dot_index + 1:]
     except:
         return ''
 
 
 assert(__split_path("log/cups/access_log")[0] == "log/cups/")
 assert(__split_path("log/cups/access_log")[1] == "access_log")
-
 assert(get_path_part("log/cups/access_log") == "log/cups/")
 assert(get_path_part("log/cups/") == "log/cups/")
 assert(get_path_part("cups/access_log") == "cups/")
