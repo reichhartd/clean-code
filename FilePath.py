@@ -1,4 +1,3 @@
-import re
 
 def get_path_part(filename):
     try:
