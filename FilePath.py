@@ -1,6 +1,5 @@
 import re
 
-# log/cups/
 def get_path_part(sFilename):
     if len(sFilename) > 0 and sFilename[len(sFilename) - 1] == '/':
         return sFilename
@@ -19,7 +18,7 @@ def get_path_part(sFilename):
 
     return dirName
 
-# access_log
+
 def get_filename_part(sFilename):
     try:
         int(sFilename.rindex('/'))
@@ -31,7 +30,7 @@ def get_filename_part(sFilename):
     return base_name
 
 
-#.png
+
 def get_file_type(sFilename):
     try:
         occurrences = [m.start() for m in re.finditer('\.', sFilename)]
