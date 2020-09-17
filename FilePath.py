@@ -1,9 +1,6 @@
 import re
 
 def get_path_part(filename):
-    if len(filename) > 0 and filename[len(filename) - 1] == '/':
-        return filename
-
     try:
         last_slash_index = int(filename.rindex('/'))
         return filename[0: last_slash_index + 1]
