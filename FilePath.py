@@ -7,12 +7,9 @@ def __split_path(file_path):
     except:
         return '', file_path
 
+
 def get_path_part(filename):
-    try:
-        last_slash_index = int(filename.rindex('/'))
-        return filename[0: last_slash_index + 1]
-    except:
-        return ''
+    return __split_path(filename)[0]
 
 
 def get_filename_part(filename):
