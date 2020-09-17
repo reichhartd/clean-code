@@ -17,7 +17,7 @@ class File:
     def get_filename(self) -> str:
         return self.__file_name
 
-    def get_file_type(self) -> str:
+    def get_type(self) -> str:
         try:
             last_dot_index = self.__file_name.rindex('.')
             return self.__file_name[last_dot_index + 1:]
@@ -33,7 +33,7 @@ assert(File("log/cups/access_log").get_filename() == "access_log")
 assert(File("log/cups/").get_filename() == "")
 assert(File("cups/access_log").get_filename() == "access_log")
 assert(File("access_log").get_filename() == "access_log")
-assert(File("log/cups/access_log").get_file_type() == "")
-assert(File("base/FileHelper.cpp").get_file_type() == "cpp")
-assert(File("base/FileHelper.cpp.bak").get_file_type() == "bak")
-assert(File("src/base.tmp/").get_file_type() == "")
+assert(File("log/cups/access_log").get_type() == "")
+assert(File("base/FileHelper.cpp").get_type() == "cpp")
+assert(File("base/FileHelper.cpp.bak").get_type() == "bak")
+assert(File("src/base.tmp/").get_type() == "")
