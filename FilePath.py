@@ -13,10 +13,10 @@ class File:
     def get_path_part(self, file_path):
         return self.split_path(file_path)[0]
 
+    def get_filename_part(self, file_path):
+        return self.split_path(file_path)[1]
 
 
-def get_filename_part(file_path):
-    return File.split_path(file_path)[1]
 
 
 def get_file_type(file_path):
@@ -34,10 +34,10 @@ assert(File().get_path_part("log/cups/access_log") == "log/cups/")
 assert(File().get_path_part("log/cups/") == "log/cups/")
 assert(File().get_path_part("cups/access_log") == "cups/")
 assert(File().get_path_part("access_log") == "")
-assert(get_filename_part("log/cups/access_log") == "access_log")
-assert(get_filename_part("log/cups/") == "")
-assert(get_filename_part("cups/access_log") == "access_log")
-assert(get_filename_part("access_log") == "access_log")
+assert(File().get_filename_part("log/cups/access_log") == "access_log")
+assert(File().get_filename_part("log/cups/") == "")
+assert(File().get_filename_part("cups/access_log") == "access_log")
+assert(File().get_filename_part("access_log") == "access_log")
 assert(get_file_type("log/cups/access_log") == "")
 assert(get_file_type("base/FileHelper.cpp") == "cpp")
 assert(get_file_type("base/FileHelper.cpp.bak") == "bak")
