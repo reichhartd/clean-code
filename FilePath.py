@@ -1,32 +1,30 @@
 class File:
-    file_path_part: str
-    file_name: str
+    __file_path_part: str
+    __file_name: str
 
     def __init__(self, file_path):
         try:
             last_slash_index = file_path.rindex('/') + 1
-            self.file_path_part = file_path[:last_slash_index]
-            self.file_name = file_path[last_slash_index:]
+            self.__file_path_part = file_path[:last_slash_index]
+            self.__file_name = file_path[last_slash_index:]
         except:
-            self.file_path_part = ''
-            self.file_name = file_path
+            self.__file_path_part = ''
+            self.__file_name = file_path
 
     def get_path_part(self):
-        return self.file_path_part
+        return self.__file_path_part
 
     def get_filename_part(self):
-        return self.file_name
+        return self.__file_name
 
     def get_file_type(self):
         try:
-            last_dot_index = self.file_name.rindex('.')
-            return self.file_name[last_dot_index + 1:]
+            last_dot_index = self.__file_name.rindex('.')
+            return self.__file_name[last_dot_index + 1:]
         except:
             return ''
 
 
-assert(File("log/cups/access_log").file_path_part == "log/cups/")
-assert(File("log/cups/access_log").file_name == "access_log")
 assert(File("log/cups/access_log").get_path_part() == "log/cups/")
 assert(File("log/cups/").get_path_part() == "log/cups/")
 assert(File("cups/access_log").get_path_part() == "cups/")
