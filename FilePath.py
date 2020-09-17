@@ -6,16 +6,9 @@ def get_path_part(filename):
 
     try:
         last_slash_index = int(filename.rindex('/'))
+        return filename[0: last_slash_index + 1]
     except:
-        last_slash_index = -1
-
-    dirName = ''
-    if last_slash_index >= 0:
-        dirName = filename[0: last_slash_index + 1]
-    else:
-        dirName = ''
-
-    return dirName
+        return ''
 
 
 def get_filename_part(sFilename):
