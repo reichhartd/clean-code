@@ -21,7 +21,7 @@ def get_file(sFile):
     return dirName
 
 # This function gets the file
-def getFilenamePart(sFilename):
+def get_filename_part(sFilename):
     try:
         int(sFilename.rindex('/'))
     except:
