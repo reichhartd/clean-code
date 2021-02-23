@@ -2,41 +2,40 @@ import re
 
 
 # Get the File path E.g. log/cups/
-# sFile is the file path
-def get_file(sFile):
-    if len(sFile) > 0 and sFile[len(sFile) - 1] == '/':
-        return sFile
+def get_file(file_path):
+    if len(file_path) > 0 and file_path[len(file_path) - 1] == '/':
+        return file_path
 
     try:
-        p_location = int(sFile.rindex('/'))
+        p_location = int(file_path.rindex('/'))
     except:
         p_location = -1
     dirName = ''
     # Karl what is this?
     if p_location >= 0:
-        dirName = sFile[0: p_location + 1]
+        dirName = file_path[0: p_location + 1]
     else:
         dirName = '' #sFilename
 
     return dirName
 
 # This function gets the file
-def get_filename_part(sFilename):
+def get_filename_part(filename):
     try:
-        int(sFilename.rindex('/'))
+        int(filename.rindex('/'))
     except:
-        return sFilename
+        return filename
 
-    pos = sFilename.rindex('/')
-    base_name = sFilename[pos + 1:]
+    pos = filename.rindex('/')
+    base_name = filename[pos + 1:]
     return base_name
 
 
 #.png
-def get_extension_part(sFilename):
+def get_extension_part(filename):
     try:
-        occurrences = [m.start() for m in re.finditer('\.', sFilename)]
-        return sFilename[occurrences[-1] + 1:]
+        occurrences = [m.start() for m in re.finditer('\.', filename)]
+        return filename[occurrences[-1] + 1:]
     except:
         pass
 
