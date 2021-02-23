@@ -22,7 +22,7 @@ def get_file(file_path):
 # This function gets the file
 def get_filename_part(filename):
     try:
-        int(filename.rindex('/'))
+        filename.rindex('/')
     except:
         return filename
 
