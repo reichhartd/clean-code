@@ -37,6 +37,4 @@ def get_extension_part(filename):
         occurrences = [m.start() for m in re.finditer('\.', filename)]
         return filename[occurrences[-1] + 1:]
     except:
-        pass
-
-    return ''
+        return ''
