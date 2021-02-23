@@ -7,7 +7,7 @@ def get_file(file_path):
         return file_path
 
     try:
-        p_location = int(file_path.rindex('/'))
+        p_location = file_path.rindex('/')
     except:
         p_location = -1
     dirName = ''
